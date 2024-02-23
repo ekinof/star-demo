@@ -47,7 +47,7 @@ class StarController extends Controller
      */
     public function show(Star $star)
     {
-        return $star;
+        return new StarResource($star);
     }
 
     /**

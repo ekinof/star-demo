@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\StarController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -10,6 +11,14 @@ Route::middleware('guest')->group(function () {
         ->name('login');
 
     Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+    Route::resource('stars', StarController::class)
+        ->only([
+            'store',
+            'show',
+            'update',
+            'destroy',
+        ]);
 });
 
 Route::middleware('auth')->group(function () {
